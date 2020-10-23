@@ -13,10 +13,6 @@ class ErrorBoundary extends React.Component {
     return {hasError: true};
   }
 
-  componentDidMount() {
-    console.log(this.props);
-  }
-
   componentDidCatch(error, errorInfo) {
     console.log(error, 'Sentry Error Info: ', error);
 
