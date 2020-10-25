@@ -1,6 +1,7 @@
 export const GET_DRIVERS_DATA_START = 'GET_DRIVERS_DATA_START';
 export const GET_DRIVERS_DATA_SUCCESS = 'GET_DRIVERS_DATA_SUCCESS';
 export const GET_DRIVERS_DATA_ERROR = 'GET_DRIVERS_DATA_ERROR';
+export const CLEAR_DRIVERS_DATA = 'CLEAR_DRIVERS_DATA';
 
 export const GET_DRIVER_BY_ID_START = 'GET_DRIVER_BY_ID_START';
 export const GET_DRIVER_BY_ID_SUCCESS = 'GET_DRIVER_BY_ID_SUCCESS';
@@ -13,14 +14,14 @@ const getDriversStart = () => ({
   type: GET_DRIVERS_DATA_START,
 });
 
-export const getAllDrivers = (offset = 0, limit = 10) => async (dispatch) => {
+export const getAllDrivers = (offset = 0, limit = 15) => async (dispatch) => {
   try {
     dispatch(getDriversStart());
 
     const response = await DriversAPI.getAll(offset, limit);
 
     console.log(
-      'Received when fetched the request "Get All Drivers Data By Page" to the API Data: ',
+      'Received when fetching the request "Get All Drivers Data By Page" to the API Data: ',
       response,
       ', Data: ',
       response.MRData,
@@ -32,7 +33,7 @@ export const getAllDrivers = (offset = 0, limit = 10) => async (dispatch) => {
       response.MRData.DriverTable &&
       response.MRData.DriverTable.Drivers
     ) {
-      await dispatch(
+      dispatch(
         getDriversSuccess(response.MRData.DriverTable.Drivers, response.MRData),
       );
     } else dispatch(getDriversError('Error'));
@@ -56,6 +57,10 @@ const getDriversError = (payload = null) => ({
   payload,
 });
 
+export const clearDriversData = () => ({
+  type: CLEAR_DRIVERS_DATA,
+});
+
 /*--- DRIVER INFO ACTIONS ---*/
 const getDriverByIdStart = () => ({
   type: GET_DRIVER_BY_ID_START,
@@ -68,7 +73,7 @@ export const getDriverById = (id = '') => async (dispatch) => {
     const response = await DriversAPI.getDriverById(id);
 
     console.log(
-      'Received when the fetched request "Get Driver Page By Id" to the API Data: ',
+      'Received when the fetching request "Get Driver Page By Id" to the API Data: ',
       response,
       ', Data: ',
       response.MRData,
@@ -82,7 +87,7 @@ export const getDriverById = (id = '') => async (dispatch) => {
       response.MRData.DriverTable.Drivers.length &&
       response.MRData.DriverTable.Drivers[0]
     ) {
-      await dispatch(
+      dispatch(
         getDriverByIdSuccess(
           response.MRData.DriverTable.Drivers[0],
           response.MRData,

@@ -2,6 +2,7 @@ import {
   GET_DRIVERS_DATA_START,
   GET_DRIVERS_DATA_SUCCESS,
   GET_DRIVERS_DATA_ERROR,
+  CLEAR_DRIVERS_DATA,
   GET_DRIVER_BY_ID_START,
   GET_DRIVER_BY_ID_SUCCESS,
   GET_DRIVER_BY_ID_ERROR,
@@ -9,7 +10,7 @@ import {
 } from '../actions/drivers';
 
 const INITIAL_STATE = {
-  driversloading: false,
+  driversLoading: false,
   drivers: [],
   listMeta: {},
   driversError: null,
@@ -23,17 +24,21 @@ const INITIAL_STATE = {
 const driversReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case GET_DRIVERS_DATA_START:
+      console.log('START');
+
       return {
         ...state,
-        driversloading: true,
+        driversLoading: true,
         driversError: null,
         listMeta: {},
       };
 
     case GET_DRIVERS_DATA_SUCCESS:
+      console.log('GET_DRIVERS_DATA_SUCCESS');
+
       return {
         ...state,
-        driversloading: false,
+        driversLoading: false,
         drivers: [...action.payload.list],
         listMeta: {...action.payload.listMeta},
         driversError: null,
@@ -42,8 +47,17 @@ const driversReducer = (state = INITIAL_STATE, action) => {
     case GET_DRIVERS_DATA_ERROR:
       return {
         ...state,
-        driversloading: false,
+        driversLoading: false,
         driversError: action.payload,
+        listMeta: {},
+      };
+
+    case CLEAR_DRIVERS_DATA:
+      return {
+        ...state,
+        driversLoading: false,
+        driversError: null,
+        drivers: {},
         listMeta: {},
       };
 
@@ -76,7 +90,7 @@ const driversReducer = (state = INITIAL_STATE, action) => {
     case CLEAR_DRIVER_DATA:
       return {
         ...state,
-        driverInfoLoading: true,
+        driverInfoLoading: false,
         driverInfo: {},
         driverMeta: {},
         driverInfoError: null,

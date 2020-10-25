@@ -17,7 +17,7 @@ export default ({
   loading = true,
   children = null,
   error = null,
-  errorInfo = 'Error when fetched the Data :(',
+  errorInfo = 'Oh no! Error when fetching the Data :(',
 }) => (
   <View style={{flex: 1, ...style}}>
     {loading ? (
