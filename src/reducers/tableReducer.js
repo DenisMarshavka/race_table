@@ -5,9 +5,10 @@ import {
 } from '../actions/table';
 
 const INITIAL_STATE = {
-  loading: false,
-  result: [],
-  error: null,
+  raceLoading: false,
+  raceResult: [],
+  listMeta: {},
+  raceError: null,
 };
 
 const tableReducer = (state = INITIAL_STATE, action) => {
@@ -15,22 +16,26 @@ const tableReducer = (state = INITIAL_STATE, action) => {
     case GET_RACE_RESUlT_DATA_START:
       return {
         ...state,
-        loading: true,
+        raceLoading: true,
+        raceError: null,
+        listMeta: {},
       };
 
     case GET_RACE_RESUlT_DATA_SUCCESS:
       return {
         ...state,
-        loading: false,
-        result: [...action.payload],
-        error: null,
+        raceLoading: false,
+        raceResult: [...action.payload.list],
+        listMeta: {...action.payload.listMeta},
+        raceError: null,
       };
 
     case GET_RACE_RESUlT_DATA_ERROR:
       return {
         ...state,
-        loading: false,
-        error: action.payload,
+        raceLoading: false,
+        raceError: action.payload,
+        listMeta: {},
       };
 
     default:

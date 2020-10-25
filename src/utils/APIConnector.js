@@ -14,10 +14,9 @@ const request = async (route, method, params, token = true, user = false) => {
   let headers = {};
 
   let body = {
-    url: SERVER_URL,
+    url: SERVER_URL + route,
     headers,
     method: APIMethods[method],
-    data: null,
   };
 
   if (APIMethods[method] !== 'GET') {
@@ -43,6 +42,7 @@ const request = async (route, method, params, token = true, user = false) => {
 
 class API {
   url = '';
+
   constructor(url = '') {
     this.url = url;
   }

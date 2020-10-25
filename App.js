@@ -11,11 +11,16 @@ import * as Sentry from '@sentry/react-native';
 import {Provider} from 'react-redux';
 import SplashScreen from 'react-native-splash-screen';
 import {enableScreens} from 'react-native-screens';
+import {
+  configureFonts,
+  DefaultTheme,
+  Provider as PaperProvider,
+} from 'react-native-paper';
 enableScreens();
 
-import AppNavigator from './navigation';
-import configureStore from './reducers';
-import ErrorBoundary from './hoc/ErrorBoundary';
+import AppNavigator from './src/navigation';
+import configureStore from './src/reducers';
+import ErrorBoundary from './src/hoc/ErrorBoundary';
 
 Sentry.init({
   dsn:
@@ -25,15 +30,34 @@ Sentry.init({
 
 const store = configureStore();
 
+const theme = {
+  ...DefaultTheme,
+};
+
 const App: () => React$Node = () => {
+  const [apploading, setAppLoading] = React.useState(true);
+  const [
+    upproveToChangeLoadingStatus,
+    setUpproveToChangeLoadingStatus,
+  ] = React.useState(true);
+
+  React.useEffect(
+    () => () => {
+      setUpproveToChangeLoadingStatus(false);
+    },
+    [],
+  );
+
   React.useEffect(() => {
-    SplashScreen.hide();
-  }, []);
+    if (!apploading && upproveToChangeLoadingStatus) SplashScreen.hide();
+  }, [apploading, upproveToChangeLoadingStatus]);
 
   return (
     <ErrorBoundary>
       <Provider store={store}>
-        <AppNavigator />
+        <PaperProvider theme={theme}>
+          <AppNavigator hadleAppLoadingSet={setAppLoading} />
+        </PaperProvider>
       </Provider>
     </ErrorBoundary>
   );

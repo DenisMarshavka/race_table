@@ -1,1 +1,1 @@
-export TableScreen from './TableScreen';
+export TablesScreen from './TablesScreen';

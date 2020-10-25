@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator, TransitionPresets} from '@react-navigation/stack';
 
-import {TablesScreen} from '../screens';
+import {TablesScreen, DriverProfileScreen} from '../screens';
 
 const Stack = createStackNavigator();
 
@@ -19,6 +19,10 @@ const config = {
 };
 
 const AppNavigator = (props) => {
+  const {hadleAppLoadingSet = () => {}} = props;
+
+  console.log('onAppLoaded', hadleAppLoadingSet);
+
   return (
     <NavigationContainer>
       <Stack.Navigator
@@ -28,7 +32,6 @@ const AppNavigator = (props) => {
         }}>
         <Stack.Screen
           name="Table"
-          component={TablesScreen}
           options={{
             headerShown: false,
             headerLeft: null,
@@ -38,6 +41,26 @@ const AppNavigator = (props) => {
               close: config,
             },
             ...TransitionPresets.SlideFromRightIOS,
+          }}>
+          {(propsScreen) => (
+            <TablesScreen
+              onAppLoadingSet={hadleAppLoadingSet}
+              {...propsScreen}
+            />
+          )}
+        </Stack.Screen>
+
+        <Stack.Screen
+          name="DriverProfile"
+          component={DriverProfileScreen}
+          options={{
+            headerShown: false,
+            headerLeft: null,
+            visible: false,
+            transitionSpec: {
+              open: config,
+              close: config,
+            },
           }}
         />
       </Stack.Navigator>
