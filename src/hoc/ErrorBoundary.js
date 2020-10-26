@@ -22,23 +22,21 @@ class ErrorBoundary extends React.Component {
 
   render() {
     return (
-      <SafeAreaView style={{flex: 1}}>
-        <View style={{flex: 1}}>
-          {!this.state.hasError ? (
-            this.props.children
-          ) : (
-            <View
-              style={{
-                flex: 1,
-                backgroundColor: 'red',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}>
-              <Text style={{flex: 1}}>Error</Text>
-            </View>
-          )}
-        </View>
-      </SafeAreaView>
+      <View style={{flex: 1}}>
+        {!this.state.hasError ? (
+          this.props.children
+        ) : (
+          <View
+            style={{
+              flex: 1,
+              backgroundColor: 'red',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <Text style={{flex: 1}}>Error</Text>
+          </View>
+        )}
+      </View>
     );
   }
 }

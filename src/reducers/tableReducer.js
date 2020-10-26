@@ -3,7 +3,7 @@ import {
   GET_RACE_RESUlT_DATA_SUCCESS,
   GET_RACE_RESUlT_DATA_ERROR,
   CLEAR_RACES_RESULTS_DATA,
-} from '../actions/table';
+} from '../actions/races';
 
 const INITIAL_STATE = {
   raceLoading: false,

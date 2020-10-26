@@ -8,4 +8,17 @@ export default StyleSheet.create({
     marginLeft: 'auto',
     marginRight: 'auto',
   },
+  resetButton: {
+    textAlign: 'left',
+    fontWeight: 'bold',
+    fontSize: 18,
+    color: 'red',
+  },
+  racesTableWrap: {marginVertical: 15},
+  resetButtonText: {
+    textAlign: 'left',
+    fontWeight: 'bold',
+    fontSize: 18,
+    color: 'red',
+  },
 });

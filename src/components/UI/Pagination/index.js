@@ -17,8 +17,6 @@ export default ({
   const [hasNext, setHasNext] = React.useState(true);
   const [hasPrev, setHasPrev] = React.useState(false);
 
-  // const [currentTablePage, setCurrentTablePage] = React.useState(1);
-
   const {total: totalListItems = 15} =
     listMeta && typeof listMeta === 'object' && Object.keys(listMeta).length
       ? listMeta
@@ -76,14 +74,7 @@ export default ({
   };
 
   return (
-    <View
-      style={{
-        flex: 1,
-        maxHeight: 35,
-        justifyContent: 'space-between',
-        flexDirection: 'row',
-        alignItems: 'center',
-      }}>
+    <View style={styles.wrap}>
       <TouchableOpacity
         activeOpacity={hasPrev ? 0.5 : 1}
         onPress={() =>
@@ -91,7 +82,7 @@ export default ({
             ? _changeTablePage(false, currentPage, maxPages, onNewPageSet)
             : null
         }>
-        <Text style={{flex: 1, color: hasPrev ? '#000' : '#ccc', fontSize: 19}}>
+        <Text style={{...styles.arrow, color: hasPrev ? '#000' : '#ccc'}}>
           {'<'}
         </Text>
       </TouchableOpacity>
@@ -105,7 +96,7 @@ export default ({
             ? _changeTablePage(true, currentPage, maxPages, onNewPageSet)
             : null
         }>
-        <Text style={{flex: 1, color: hasNext ? '#000' : '#ccc', fontSize: 19}}>
+        <Text style={{...styles.arrow, color: hasNext ? '#000' : '#ccc'}}>
           {'>'}
         </Text>
       </TouchableOpacity>

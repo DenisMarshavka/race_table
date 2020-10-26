@@ -11,16 +11,14 @@ import * as Sentry from '@sentry/react-native';
 import {Provider} from 'react-redux';
 import SplashScreen from 'react-native-splash-screen';
 import {enableScreens} from 'react-native-screens';
-import {
-  configureFonts,
-  DefaultTheme,
-  Provider as PaperProvider,
-} from 'react-native-paper';
+import {DefaultTheme, Provider as PaperProvider} from 'react-native-paper';
 enableScreens();
 
 import AppNavigator from './src/navigation';
 import configureStore from './src/reducers';
 import ErrorBoundary from './src/hoc/ErrorBoundary';
+
+import {getAllDrivers} from './src/actions/drivers';
 
 Sentry.init({
   dsn:
@@ -41,12 +39,13 @@ const App: () => React$Node = () => {
     setUpproveToChangeLoadingStatus,
   ] = React.useState(true);
 
-  React.useEffect(
-    () => () => {
+  React.useEffect(() => {
+    store.dispatch(getAllDrivers());
+
+    () => {
       setUpproveToChangeLoadingStatus(false);
-    },
-    [],
-  );
+    };
+  }, []);
 
   React.useEffect(() => {
     if (!apploading && upproveToChangeLoadingStatus) SplashScreen.hide();

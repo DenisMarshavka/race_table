@@ -1,6 +1,5 @@
 import 'react-native-gesture-handler';
 import React from 'react';
-import {connect} from 'react-redux';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator, TransitionPresets} from '@react-navigation/stack';
 
@@ -68,10 +67,4 @@ const AppNavigator = (props) => {
   );
 };
 
-// const mapStateToProps = (state) => {
-//   return {
-//     currentUser: state.currentUser.currentUser,
-//   };
-// };
-
-export default connect(/*mapStateToProps*/ null, null)(AppNavigator);
+export default AppNavigator;
