@@ -1,1 +1,0 @@
-export TablesScreen from './TablesScreen';
