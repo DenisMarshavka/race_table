@@ -2,6 +2,7 @@ import React from 'react';
 import {TouchableOpacity, Text} from 'react-native';
 import {DataTable} from 'react-native-paper';
 
+import Constans from './../../../../utils/constans';
 import DriverField from './../../DriverField';
 
 export default ({
@@ -29,7 +30,9 @@ export default ({
 
         <DataTable.Cell>
           <TouchableOpacity activateOpacity={0.5} onPress={onDriverResulstMore}>
-            <Text numberOfLines={1} style={{color: 'red'}}>
+            <Text
+              numberOfLines={1}
+              style={{color: Constans.THEME.colors.primary}}>
               More...
             </Text>
           </TouchableOpacity>

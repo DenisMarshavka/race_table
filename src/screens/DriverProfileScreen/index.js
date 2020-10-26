@@ -3,8 +3,9 @@ import {View, Text, TouchableOpacity, Alert, Linking} from 'react-native';
 import {connect} from 'react-redux';
 import {Card, Title, Paragraph, Appbar} from 'react-native-paper';
 
+import Constans from './../../utils/constans';
 import DataInfo from './../../hoc/DataInfo';
-
+import styles from './styles';
 import {getDriverById, clearDriverData} from './../../actions/drivers';
 
 const TextRow = ({children, style = {}}) => (
@@ -64,23 +65,14 @@ const DriverProfileScreen = ({
     } else Alert.alert(`Don't know how to open this URL: ${url}`);
   };
 
-  const e = {
-    dateOfBirth: '1956-12-23',
-    driverId: 'alboreto',
-    familyName: 'Alboreto',
-    givenName: 'Michele',
-    nationality: 'Italian',
-    url: 'http://en.wikipedia.org/wiki/Michele_Alboreto',
-  };
-
   return (
     <View style={{flex: 1}}>
-      <Appbar.Header style={{backgroundColor: 'red'}} dark={true}>
+      <Appbar.Header style={styles.head} dark={true}>
         <Appbar.BackAction onPress={() => navigation.goBack()} />
 
         <Appbar.Content
-          titleStyle={{fontSize: 22, marginTop: 5}}
-          subtitleStyle={{fontSize: 17}}
+          titleStyle={styles.headTitle}
+          subtitleStyle={styles.headSubtitle}
           title={fullName}
           subtitle="Driver"
         />
@@ -88,51 +80,47 @@ const DriverProfileScreen = ({
         <TouchableOpacity
           activityOpacity={0.2}
           onPress={() => (!loading ? _handleMore(xmlns) : null)}>
-          <Text
-            style={{
-              color: 'blue',
-              opacity: !loading ? 1 : 0.2,
-              textDecorationLine: 'underline',
-              fontSize: 20,
-              paddingRight: 10,
-            }}>
+          <Text style={{...styles.headMoreButton, opacity: !loading ? 1 : 0.2}}>
             More
           </Text>
         </TouchableOpacity>
       </Appbar.Header>
 
-      <DataInfo
-        style={{paddingTop: 15, paddingHorizontal: 16}}
-        loading={loading}
-        error={error}>
+      <DataInfo style={styles.content} loading={loading} error={error}>
         <Card>
           <Card.Content>
-            <Title style={{marginBottom: 30, textAlign: 'center'}}>
-              Info of the Person
-            </Title>
+            <Title style={styles.title}>Info of the Person</Title>
 
             <TextRow>
               <Paragraph style={{fontSize: 18}}>Name: </Paragraph>
 
-              <Text style={{color: 'red'}}>{givenName}</Text>
+              <Text style={{color: Constans.THEME.colors.primary}}>
+                {givenName}
+              </Text>
             </TextRow>
 
             <TextRow>
               <Paragraph style={{fontSize: 18}}>Family: </Paragraph>
 
-              <Text style={{color: 'red'}}>{familyName}</Text>
+              <Text style={{color: Constans.THEME.colors.primary}}>
+                {familyName}
+              </Text>
             </TextRow>
 
             <TextRow>
               <Paragraph style={{fontSize: 18}}>Birth date: </Paragraph>
 
-              <Text style={{color: 'red'}}>{dateOfBirth}</Text>
+              <Text style={{color: Constans.THEME.colors.primary}}>
+                {dateOfBirth}
+              </Text>
             </TextRow>
 
             <TextRow style={{marginBottom: 0}}>
               <Paragraph style={{fontSize: 18}}>Nationality: </Paragraph>
 
-              <Text style={{color: 'red'}}>{nationality}</Text>
+              <Text style={{color: Constans.THEME.colors.primary}}>
+                {nationality}
+              </Text>
             </TextRow>
           </Card.Content>
         </Card>

@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import Constans from './../../utils/constans';
 
 export default StyleSheet.create({
   container: {
@@ -12,13 +13,13 @@ export default StyleSheet.create({
     textAlign: 'left',
     fontWeight: 'bold',
     fontSize: 18,
-    color: 'red',
+    color: Constans.THEME.colors.primary,
   },
   racesTableWrap: {marginVertical: 15},
   resetButtonText: {
     textAlign: 'left',
     fontWeight: 'bold',
     fontSize: 18,
-    color: 'red',
+    color: Constans.THEME.colors.primary,
   },
 });

@@ -1,6 +1,8 @@
 import React from 'react';
 import * as Sentry from '@sentry/react-native';
-import {SafeAreaView, View, Text} from 'react-native';
+import {View, Text} from 'react-native';
+
+import styles from './styles';
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -14,7 +16,7 @@ class ErrorBoundary extends React.Component {
   }
 
   componentDidCatch(error, errorInfo) {
-    console.log(error, 'Sentry Error Info: ', error);
+    console.warn(error, 'Sentry Error Info: ', error);
 
     Sentry.captureException(error, errorInfo);
     Sentry.captureException(error);
@@ -26,14 +28,8 @@ class ErrorBoundary extends React.Component {
         {!this.state.hasError ? (
           this.props.children
         ) : (
-          <View
-            style={{
-              flex: 1,
-              backgroundColor: 'red',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}>
-            <Text style={{flex: 1}}>Error</Text>
+          <View style={styles.wrap}>
+            <Text style={styles.text}>Oops, Something Went Wrong :(</Text>
           </View>
         )}
       </View>

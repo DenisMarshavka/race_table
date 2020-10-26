@@ -2,6 +2,7 @@ import React from 'react';
 import {TouchableOpacity, Text} from 'react-native';
 import {DataTable} from 'react-native-paper';
 
+import Constans from './../../utils/constans';
 import {getFullNameDriver} from './../../utils';
 
 export default ({navigation, driver = {}, isDriversTable = false}) => {
@@ -17,7 +18,7 @@ export default ({navigation, driver = {}, isDriversTable = false}) => {
             fullName,
           })
         }>
-        <Text numberOfLines={1} style={{color: 'red'}}>
+        <Text numberOfLines={1} style={{color: Constans.THEME.colors.primary}}>
           {fullName}
         </Text>
       </TouchableOpacity>

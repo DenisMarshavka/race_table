@@ -1,11 +1,11 @@
 import {createStore, combineReducers, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
 
-import tableReducer from './tableReducer';
+import racesReducer from './racesReducer';
 import driversReducer from './driversReducer';
 
 const rootReducer = combineReducers({
-  tableReducer,
+  racesReducer,
   driversReducer,
 });
 

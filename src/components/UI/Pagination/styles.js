@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import Constans from './../../../utils/constans';
 
 export default StyleSheet.create({
   wrap: {
@@ -8,5 +9,5 @@ export default StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-  arrow: {flex: 1, color: '#ccc', fontSize: 19},
+  arrow: {flex: 1, color: Constans.THEME.colors.light, fontSize: 19},
 });

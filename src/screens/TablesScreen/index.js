@@ -57,9 +57,8 @@ const TablesScreen = ({
   ] = React.useState('');
 
   // React.useEffect(() => {
-  //   getAllDrivers();
-  //
-  //   // throw new error('Уупс!');
+  // getAllDrivers();
+  // throw new error('Уупс!');
   // }, []);
 
   React.useEffect(() => {
@@ -211,11 +210,11 @@ const mapStateToProps = (state) => ({
   driversListMeta: state.driversReducer.listMeta,
   driversError: state.driversReducer.driversError,
 
-  raceLoading: state.tableReducer.raceLoading,
-  raceResult: state.tableReducer.raceResult,
-  raceListMeta: state.tableReducer.listMeta,
-  raceError: state.tableReducer.raceError,
-  racesByDriverId: state.tableReducer.racesByDriverId,
+  raceLoading: state.racesReducer.raceLoading,
+  raceResult: state.racesReducer.raceResult,
+  raceListMeta: state.racesReducer.listMeta,
+  raceError: state.racesReducer.raceError,
+  racesByDriverId: state.racesReducer.racesByDriverId,
 });
 
 export default connect(mapStateToProps, {

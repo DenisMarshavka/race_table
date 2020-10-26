@@ -13,7 +13,7 @@ const INITIAL_STATE = {
   racesByDriverId: false,
 };
 
-const tableReducer = (state = INITIAL_STATE, action) => {
+const racesReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     /*--- SPECIFICATIONS ---*/
     case CLEAR_RACES_RESULTS_DATA:
@@ -58,4 +58,4 @@ const tableReducer = (state = INITIAL_STATE, action) => {
   }
 };
 
-export default tableReducer;
+export default racesReducer;

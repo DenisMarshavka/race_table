@@ -1,11 +1,11 @@
 import React from 'react';
 import {View, Text, ActivityIndicator} from 'react-native';
 
+import Constans from './../../utils/constans';
+import styles from './styles';
+
 const Wrap = ({children = [], style = {}}) => (
-  <View
-    style={{flex: 1, justifyContent: 'center', alignItems: 'center', ...style}}>
-    {children}
-  </View>
+  <View style={{...styles.wrap, ...style}}>{children}</View>
 );
 
 export default ({
@@ -24,7 +24,7 @@ export default ({
       <Wrap style={{...wrapStyle}}>
         <ActivityIndicator
           size="large"
-          color="red"
+          color={Constans.THEME.colors.primary}
           {...activityIndicatorProps}
         />
       </Wrap>

@@ -1,6 +1,7 @@
 import React from 'react';
-import {View, TouchableOpacity, Text, ScrollView} from 'react-native';
+import {View, TouchableOpacity, Text} from 'react-native';
 
+import Constans from './../../../utils/constans';
 import styles from './styles';
 
 export default ({
@@ -82,7 +83,13 @@ export default ({
             ? _changeTablePage(false, currentPage, maxPages, onNewPageSet)
             : null
         }>
-        <Text style={{...styles.arrow, color: hasPrev ? '#000' : '#ccc'}}>
+        <Text
+          style={{
+            ...styles.arrow,
+            color: hasPrev
+              ? Constans.THEME.colors.dark
+              : Constans.THEME.colors.light,
+          }}>
           {'<'}
         </Text>
       </TouchableOpacity>
@@ -96,7 +103,13 @@ export default ({
             ? _changeTablePage(true, currentPage, maxPages, onNewPageSet)
             : null
         }>
-        <Text style={{...styles.arrow, color: hasNext ? '#000' : '#ccc'}}>
+        <Text
+          style={{
+            ...styles.arrow,
+            color: hasNext
+              ? Constans.THEME.colors.dark
+              : Constans.THEME.colors.light,
+          }}>
           {'>'}
         </Text>
       </TouchableOpacity>
